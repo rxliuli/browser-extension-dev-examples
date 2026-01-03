@@ -1,0 +1,10 @@
+{
+  "name": "browser-extension-dev-examples",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "init-all": "pnpm -r run init",
+    "test-all": "pnpm -r run test"
+  },
+  "packageManager": "pnpm@10.26.2"
+}

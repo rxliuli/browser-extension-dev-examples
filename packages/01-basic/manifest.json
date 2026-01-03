@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Hide AI Mode on Google Search",
+  "version": "0.0.1",
+  "description": "Hide the AI Mode button on Google Search pages.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/"
+      ],
+      "js": [
+        "content-scripts/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "128": "icon/128.png"
+  }
+}
