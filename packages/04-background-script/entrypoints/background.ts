@@ -1,19 +1,19 @@
 export default defineBackground(() => {
   console.log('Hello background!', { id: browser.runtime.id })
 
-  const lastAcessed = new Map<number, number>()
+  const lastAccessed = new Map<number, number>()
 
   browser.tabs.onCreated.addListener((tab) => {
     if (!tab.id) {
       return
     }
-    lastAcessed.set(tab.id, Date.now())
+    lastAccessed.set(tab.id, Date.now())
   })
   browser.tabs.onRemoved.addListener((tabId) => {
-    lastAcessed.delete(tabId)
+    lastAccessed.delete(tabId)
   })
   browser.tabs.onActivated.addListener((activeInfo) => {
-    lastAcessed.set(activeInfo.tabId, Date.now())
+    lastAccessed.set(activeInfo.tabId, Date.now())
     console.log('Tab activated:', activeInfo.tabId)
     autoDiscardTabs()
   })
@@ -27,8 +27,8 @@ export default defineBackground(() => {
         !tab.audible &&
         !tab.frozen &&
         !tab.discarded &&
-        lastAcessed.has(tab.id) &&
-        Date.now() - lastAcessed.get(tab.id)! > Timeout,
+        lastAccessed.has(tab.id) &&
+        Date.now() - lastAccessed.get(tab.id)! > Timeout,
     )
     for (const tab of tabs) {
       await browser.tabs.discard(tab.id!)
